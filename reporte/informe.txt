@@ -1,0 +1,81 @@
+INFORME TÉCNICO - PRÁCTICA 2 (UNIDAD II)
+============================================================
+1. Nombre del estudiante : Horacio Rodrigo Luna Loza
+2. Título del caso       : Demanda diaria de Paracetamol 500 mg
+                           en una farmacia (base para sistema
+                           de ventas e inventario).
+
+3. Formulación del problema
+   La farmacia no cuenta con un criterio cuantitativo para
+   decidir cuándo reponer el Paracetamol 500 mg ni cuánto
+   stock de seguridad mantener. Esto provoca quiebres de
+   stock en días de alta demanda y sobre-stock en días
+   normales. Se necesita caracterizar la demanda diaria
+   para alimentar el módulo de inventario de un futuro
+   sistema de ventas.
+
+4. Variable principal
+   demanda_unidades: unidades vendidas por día.
+   Tipo: cuantitativa discreta (unidades).
+   Unidad: unidades/día.
+
+5. Supuestos
+   - La farmacia opera los 40 días en condiciones similares.
+   - Un solo punto de venta, sin promociones durante la
+     mayor parte del periodo observado.
+   - Las ventas diarias son independientes entre sí.
+   - El proveedor tiene un lead time estable de 3 días.
+   - Los registros del sistema de ventas son confiables.
+
+6. Estadísticos descriptivos
+   n                      = 40
+   Media                  = 45.7000 unidades/día
+   Mediana                = 46.0000
+   Moda                   = 43.0000
+   Varianza muestral      = 69.8564
+   Desviación estándar    = 8.3580
+   Coeficiente de variación = 18.29 %
+   Mínimo                 = 12.00
+   Q1                     = 43.00
+   Q3                     = 49.00
+   IQR                    = 6.00
+   Máximo                 = 78.00
+   Asimetría              = -0.2114
+   Curtosis               = 11.4393
+
+7. Valores atípicos (Z-Score, |Z| > 3)
+   id_dia= 8  demanda=   78 u  Z=+3.865
+   id_dia=22  demanda=   12 u  Z=-4.032
+
+8. Análisis descriptivo
+   La demanda media es de 45.70 unidades/día con una
+   desviación estándar de 8.36 unidades. El coeficiente
+   de variación (18.29%) indica una dispersión moderada.
+   La asimetría (-0.21) y la curtosis (+11.44)
+   reflejan la presencia de días con comportamiento anómalo.
+
+9. Interpretación técnica
+   Prueba de Kolmogorov-Smirnov (bondad de ajuste Normal)
+   Estadístico D = 0.1755
+   p-valor       = 0.1508   (alpha = 0.05)
+   Decisión      : No se rechaza H0: la demanda diaria puede modelarse como Normal.
+
+   Aplicación al sistema de inventario
+   Lead time del proveedor     L  = 3 días
+   Nivel de servicio deseado      = 95 %
+   z de servicio                  = 1.6449
+   Punto de reorden (ROP)         = 160.91 unidades
+   Stock de seguridad (SS)        = 23.81 unidades
+
+10. Conclusión
+   La demanda diaria de Paracetamol 500 mg puede caracterizarse
+   con una media cercana a 45 unidades/día y una desviación
+   estándar de ~7 unidades. Los días 8 (brote/demanda alta) y
+   22 (feriado/demanda baja) son outliers que el sistema debe
+   tratar como eventos especiales y no como parte del patrón
+   normal. Con un lead time de 3 días y un nivel de servicio
+   del 95%, se recomienda configurar en el sistema un punto
+   de reorden de 161 unidades y un stock de seguridad
+   de 24 unidades. Este resultado es directamente
+   utilizable como parámetro de configuración del módulo de
+   inventario del sistema de ventas.
